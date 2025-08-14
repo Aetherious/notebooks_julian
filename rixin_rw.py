@@ -1,15 +1,21 @@
 """
-  Read Athena++ output data files and fill in empty regions in each level.
-  Author: Rixin Li
-  Email: rixin.li.astro@gmail.com
+Read Athena++ output data files and fill in empty regions in each level.
+
+Author: Rixin Li
+Email: <rixin.li.astro@gmail.com>
 """
 
-import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
-import athena_read as athr
+# Standard Library
 import re
 import warnings
+
+# External Packages
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Local Imports
+import athena_read as athr
+
 
 def unique_with_atol(A, atol=1e-7):
     equals = np.isclose(A[:-1], A[1:], atol=atol)
@@ -41,7 +47,7 @@ def dust_simplified_check(key_name):
                 re.match(r'(w|W)([1-3]|[xyzr]|phi|theta|[Ï†Ï•Î¸])_\d', key_name)
                 )
 
-class Raw_Data_Restricted:
+class DataMasking:
     
     def __init__(self, filename, q=None, **kwargs):
     
@@ -422,5 +428,4 @@ class Raw_Data_Restricted:
             return fig, ax
 
 if __name__ == "__main__":
-
     pass
